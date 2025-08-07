@@ -1,0 +1,28 @@
+from rest_framework import serializers
+from accounts.models import Funcionario
+from django.contrib.auth.models import User
+
+class FuncionarioSerializers(serializers.ModelSerializer):
+    password = serializers.CharField(write_only = True, style = {'input_type': 'password'})
+    class Meta:
+        model = Funcionario
+        fields = ['nome', 'data_nascimento', 'genero', 'estado_civil', 'secretaria_trabalho', 'cargo', 'cpf', 'numero', 'email', 'username', 'password']
+        
+        
+    def create(self, validated_data):
+        password = validated_data.pop("password")
+        user = Funcionario(**validated_data) 
+        user.set_password(password)  
+        user.clean()
+        user.save()
+        return user
+    
+    def update(self, instance, validated_data):
+        password = validated_data.pop("password", None)
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        if password is not None:
+            instance.set_password(password)
+        instance.clean()
+        instance.save()
+        return instance
