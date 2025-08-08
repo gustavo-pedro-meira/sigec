@@ -6,7 +6,7 @@ class FuncionarioSerializers(serializers.ModelSerializer):
     password = serializers.CharField(write_only = True, style = {'input_type': 'password'})
     class Meta:
         model = Funcionario
-        fields = ['cargo', 'email', 'username', 'password']
+        fields = ['id', 'cargo', 'email', 'username', 'password']
         
     def create(self, validated_data):
         password = validated_data.pop("password")
