@@ -10,10 +10,10 @@ class Funcionario(User):
     )
     
     nome = models.CharField(max_length=100)
-    data_nascimento = models.DateField(default='2000-02-02')
-    numero = models.CharField(max_length=11)
-    cpf = models.CharField(max_length=11)
-    genero = models.CharField(max_length=20)
-    estado_civil = models.CharField(max_length=20)
-    secretaria_trabalho = None
+    # data_nascimento = models.DateField(default='2000-02-02')
+    # numero = models.CharField(max_length=11)
+    # cpf = models.CharField(max_length=11)
+    # genero = models.CharField(max_length=20)
+    # estado_civil = models.CharField(max_length=20)
+    # secretaria_trabalho = None
     cargo = models.CharField(max_length=20, choices=CARGO, default='F')

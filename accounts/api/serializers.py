@@ -8,7 +8,6 @@ class FuncionarioSerializers(serializers.ModelSerializer):
         model = Funcionario
         fields = ['cargo', 'email', 'username', 'password']
         
-        
     def create(self, validated_data):
         password = validated_data.pop("password")
         user = Funcionario(**validated_data) 
