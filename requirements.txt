@@ -8,3 +8,4 @@ tzdata==2025.2
 gunicorn
 djangorestframework-simplejwt
 django-cors-headers
+re
