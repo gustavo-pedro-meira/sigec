@@ -7,7 +7,7 @@ class FuncionarioSerializers(serializers.ModelSerializer):
     password = serializers.CharField(write_only = True, style = {'input_type': 'password'})
     class Meta:
         model = Funcionario
-        fields = ['id', 'cargo', 'email', 'username', 'password']
+        fields = ['id', 'cargo', 'nome_completo', 'username', 'password']
         
     # Validações Personalizadas
     def SenhaCaracteresEspeciaisValidation(self, data):
