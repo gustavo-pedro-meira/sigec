@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # Apps
     'accounts',
     'tasks',
+    'registry',
 ]
 
 MIDDLEWARE = [
