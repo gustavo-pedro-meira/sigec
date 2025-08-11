@@ -1,13 +1,13 @@
 from rest_framework import viewsets, serializers
 from .serializers import TarefaSerializer
 from tasks.models import Tarefa
-from rest_framework.permissions import IsAuthenticated
+from .permissions import CriarTarefaPermissions
 from accounts.models import Funcionario
 
 class TarefaViewSets(viewsets.ModelViewSet):
     queryset = Tarefa.objects.all()
     serializer_class = TarefaSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CriarTarefaPermissions]
     
     # def perform_create(self, serializer):
     #     try:
