@@ -7,3 +7,4 @@ class FuncionarioViewSets(viewsets.ModelViewSet):
     queryset = Funcionario.objects.all()
     serializer_class = FuncionarioSerializers
     permission_classes = [IsAuthenticated]
+    

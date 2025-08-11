@@ -1,13 +1,16 @@
 from rest_framework import serializers
 from accounts.models import Funcionario
 from django.contrib.auth.models import User
+from registry.api.serializers import CargoSerializers, SecretariaSerializers
 import re
 
 class FuncionarioSerializers(serializers.ModelSerializer):
     password = serializers.CharField(write_only = True, style = {'input_type': 'password'})
+    cargo_trabalho = CargoSerializers(read_only=True)
+    secretaria_trabalho = SecretariaSerializers(read_only=True)
     class Meta:
         model = Funcionario
-        fields = ['id', 'cargo', 'nome_completo', 'username', 'password']
+        fields = ['id', 'cargo', 'nome_completo', 'username', 'password', 'secretaria_trabalho', 'cargo_trabalho']
         
     # Validações Personalizadas
     def SenhaCaracteresEspeciaisValidation(self, data):
@@ -52,6 +55,17 @@ class FuncionarioSerializers(serializers.ModelSerializer):
         user.clean()
         user.save()
         return user
+    
+    # def create(self, validated_data):
+    #     username = validated_data.pop('username')
+    #     password = validated_data.pop('password')
+    #     user = self.Meta.model.objects.create_user(
+    #         username=username,
+    #         email=email,
+    #         password=password,
+    #         **validated_data  # Passa todos os campos restantes (secretaria_servico, etc.)
+    #     )
+    #     return user
     
     def update(self, instance, validated_data):
         password = validated_data.pop("password", None)

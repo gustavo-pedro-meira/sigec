@@ -22,10 +22,16 @@ from rest_framework import routers, permissions
 
 # Importação das ViewSets das APP
 from accounts.api.viewsets import FuncionarioViewSets
+from registry.api.viewsets import SecretariaViewSets, CargoViewSets
+from tasks.api.viewsets import TarefaViewSets
 
 # Criação das Rotas
 router = routers.DefaultRouter()
 router.register('funcionarios', FuncionarioViewSets)
+router.register('secretarias', SecretariaViewSets)
+router.register('cargos', CargoViewSets)
+router.register('tarefas', TarefaViewSets)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
