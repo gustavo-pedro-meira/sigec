@@ -14,7 +14,7 @@ class FuncionarioSerializers(serializers.ModelSerializer):
         
     # Validações Personalizadas
     def SenhaCaracteresEspeciaisValidation(self, data):
-        caracteres = ['!', '#', '$', '%', '@', '^', '*', '&']
+        caracteres = ['!', '#', '$', '%', '@', '^', '*', '&', '-', '&', '<', '>']
         if not any(c in data['password'] for c in caracteres):
             raise serializers.ValidationError('A senha deve conter pelo menos 1 caractere especial.')
         return data
