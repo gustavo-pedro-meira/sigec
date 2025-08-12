@@ -26,6 +26,7 @@ class Tarefa(models.Model):
     id_secretaria = models.ForeignKey(Secretaria, on_delete=models.CASCADE, related_name='tarefas')
     tarefa_cargo = models.ForeignKey(Cargo, on_delete=models.SET_NULL, related_name='taredas_cargo', blank=True, null=True)
     id_criador = models.ForeignKey(Funcionario, on_delete=models.SET_NULL, related_name='tarefas_criado', blank=True, null=True)
+    id_responsavel = models.ForeignKey(Funcionario, on_delete=models.CASCADE, related_name='tarefas_responsavel', blank=True, null=True)
     
     def __str__(self):
         return self.missao_tarefa

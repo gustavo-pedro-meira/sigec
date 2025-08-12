@@ -12,5 +12,6 @@ class TarefaFilter(django_filters.FilterSet):
             'id_secretaria',
             'tarefa_cargo',
             'id_criador',
+            'id_responsavel',
         }
     

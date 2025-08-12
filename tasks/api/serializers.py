@@ -7,6 +7,7 @@ class TarefaSerializer(serializers.ModelSerializer):
     tarefa_cargo = CargoSerializers(read_only=True)
     id_secretaria = SecretariaSerializers(read_only=True)
     id_criador = FuncionarioSerializers(read_only=True)
+    id_responsavel = FuncionarioSerializers(read_only=True)
     class Meta:
         model = Tarefa
-        fields = ['id', 'missao_tarefa', 'descricao_tarefa', 'prazo_tarefa', 'status_tarefa', 'anexo_tarefa', 'prioridade_tarefa', 'id_secretaria', 'tarefa_cargo', 'id_criador']
+        fields = ['id', 'missao_tarefa', 'descricao_tarefa', 'prazo_tarefa', 'status_tarefa', 'anexo_tarefa', 'prioridade_tarefa', 'id_secretaria', 'tarefa_cargo', 'id_criador', 'id_responsavel']
