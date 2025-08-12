@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from registry.models import Secretaria, Cargo
+from accounts.models import Funcionario
 
 # Create your models here.
 class Tarefa(models.Model):
@@ -11,10 +12,10 @@ class Tarefa(models.Model):
         EXPIRADA = 'E', 'Expirada'
         
     class PrioridadeTarefa(models.TextChoices):
-        URGENTE = 'U', 'Urgente'
-        ALTA = 'A', 'Alta'
-        MEDIA = 'M', 'Médio'
         BAIXA = 'B', 'Baixa'
+        MEDIA = 'M', 'Médio'
+        ALTA = 'A', 'Alta'
+        URGENTE = 'U', 'Urgente'
     
     missao_tarefa = models.CharField(max_length=150)
     descricao_tarefa = models.TextField()
@@ -24,6 +25,7 @@ class Tarefa(models.Model):
     prioridade_tarefa = models.CharField(max_length=20, choices=PrioridadeTarefa.choices, default=PrioridadeTarefa.BAIXA)
     id_secretaria = models.ForeignKey(Secretaria, on_delete=models.CASCADE, related_name='tarefas')
     tarefa_cargo = models.ForeignKey(Cargo, on_delete=models.SET_NULL, related_name='taredas_cargo', blank=True, null=True)
+    id_criador = models.ForeignKey(Funcionario, on_delete=models.SET_NULL, related_name='tarefas_criado', blank=True, null=True)
     
     def __str__(self):
         return self.missao_tarefa

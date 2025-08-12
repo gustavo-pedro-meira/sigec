@@ -11,5 +11,6 @@ class TarefaFilter(django_filters.FilterSet):
             'prioridade_tarefa',
             'id_secretaria',
             'tarefa_cargo',
+            'id_criador',
         }
     

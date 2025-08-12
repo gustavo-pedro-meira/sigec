@@ -10,3 +10,13 @@ class CriarTarefaPermissions(permissions.BasePermission):
             return False
         
         return request.user.funcionario.cargo in ['G', 'S']
+    
+    def has_object_permission(self, request, view, obj):
+        if request.user.funcionario.cargo == 'G':
+            return True
+        
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        
+        self.message = 'Você só pode alterar ou deletar tarefas que você mesmo criou.'
+        return obj.id_criador == request.user.funcionario
