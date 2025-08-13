@@ -15,7 +15,7 @@ class Funcionario(User):
     # genero = models.CharField(max_length=20)
     cargo = models.CharField(max_length=20, choices=CargoFuncionario.choices, default=CargoFuncionario.FUNCIONARIO)
     secretaria_trabalho = models.ForeignKey(Secretaria, on_delete=models.SET_NULL, related_name='secretarias', null=True, blank=True)
-    cargo_trabalho = models.ForeignKey(Cargo, on_delete=models.SET_NULL, related_name='cargos', null=True, blank=True)
+    # cargo_trabalho = models.ForeignKey(Cargo, on_delete=models.SET_NULL, related_name='cargos', null=True, blank=True)
     # tarefas = models.ForeignKey('tasks.Tarefa', on_delete=models.SET_NULL, related_name='tarefas', blank=True, null=True)
     
     def __str__(self):

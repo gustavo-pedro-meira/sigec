@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 class BaseModelQuerySet(models.QuerySet):
     def delete(self):
-        self.update(deleted_at=timezone.now , is_active=False)
+        self.update(deleted_at=timezone.now() , is_active=False)
 
 class BaseManager(models.Manager):
     def get_queryset (self):

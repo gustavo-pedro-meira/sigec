@@ -2,15 +2,28 @@ from rest_framework import serializers
 from accounts.models import Funcionario
 from django.contrib.auth.models import User
 from registry.api.serializers import CargoSerializers, SecretariaSerializers
+from registry.models import Secretaria
 import re
 
 class FuncionarioSerializers(serializers.ModelSerializer):
     password = serializers.CharField(write_only = True, style = {'input_type': 'password'})
-    cargo_trabalho = CargoSerializers(read_only=True)
+    
+    # Campo de Leitura
     secretaria_trabalho = SecretariaSerializers(read_only=True)
+    
+    # Campo de Escrita
+    secretaria_id = serializers.PrimaryKeyRelatedField(queryset=Secretaria.objects.all(), source='secretaria_trabalho', write_only=True)
     class Meta:
         model = Funcionario
-        fields = ['id', 'cargo', 'nome_completo', 'username', 'password', 'secretaria_trabalho', 'cargo_trabalho']
+        fields = [
+            'id', 'cargo', 'nome_completo', 'username', 'password',
+            
+            # Campo de Leitura
+            'secretaria_trabalho',
+            
+            # Campo de Escrita
+            'secretaria_id'
+        ]
         
     # Validações Personalizadas
     def SenhaCaracteresEspeciaisValidation(self, data):

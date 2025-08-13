@@ -29,5 +29,5 @@ class TarefaViewSets(viewsets.ModelViewSet):
 
         return Tarefa.objects.none()
 
-    def perform_create(self, serializer):
-        serializer.save(criador=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(criador=self.request.user)
