@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import routers, permissions
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 # Importação das ViewSets das APP
 from accounts.api.viewsets import FuncionarioViewSets
@@ -35,9 +36,16 @@ router.register('tarefas', TarefaViewSets)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # URLS do TOKEN
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
     # URLS das APP
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    
+    # URLS do SWAGGER
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]

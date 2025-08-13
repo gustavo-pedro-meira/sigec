@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
     
     # Apps
     'accounts',
@@ -136,7 +138,8 @@ REST_FRAMEWORK = {
         'anon': '100/day',
         'user': '1500/day'
     },
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
@@ -147,6 +150,12 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'BackEnd CheckList',
+    'DESCRIPTION': 'Documentação do BackEnd para o Sistema CheckList da SIGEC.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
