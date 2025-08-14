@@ -47,7 +47,7 @@ class Tarefa(BaseModel):
     
     missao_tarefa = models.CharField(max_length=150)
     descricao_tarefa = models.TextField()
-    prazo_tarefa = models.DateTimeField(default=timezone.now)
+    prazo_tarefa = models.DateField(default=timezone.now)
     status_tarefa = models.CharField(max_length=20, choices=StatusTarefa.choices, default=StatusTarefa.A_FAZER)
     anexo_tarefa = models.FileField(upload_to='documentos/', blank=True, null=True)
     prioridade_tarefa = models.CharField(max_length=20, choices=PrioridadeTarefa.choices, default=PrioridadeTarefa.BAIXA)

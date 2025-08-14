@@ -4,6 +4,8 @@ from registry.models import Secretaria, Cargo
 from accounts.models import Funcionario
 from registry.api.serializers import SecretariaSerializers, CargoSerializers
 from accounts.api.serializers import FuncionarioSerializers
+from django.utils import timezone
+import datetime
 
 class TarefaSerializer(serializers.ModelSerializer):
     # Somente Leitura
@@ -26,5 +28,15 @@ class TarefaSerializer(serializers.ModelSerializer):
             'id_secretaria',  'id_criador', 'id_responsavel',
             
             # Nomes dos campos de escrita (apenas IDs)
-            'secretaria_id', 'criador_id', 'responsavel_id'
+            'secretaria_id', 'criador_id', 'responsavel_id', 'created_at', 'updated_at'
         ]
+        
+    # Validações Personalizadas
+    def PrazoTarefaDataMaiorQueHojeValidation(self, data):
+        if data['prazo_tarefa'] < datetime.date.today():
+            raise serializers.ValidationError('O prazo da tarefa não pode ser uma data passada.')
+        return data
+    
+    def validate(self, data):
+        self.PrazoTarefaDataMaiorQueHojeValidation(data)
+        return data
