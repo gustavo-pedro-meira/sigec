@@ -2,7 +2,7 @@ from rest_framework import viewsets, serializers
 from .serializers import TarefaSerializer, AgendaSerializers
 from tasks.models import Tarefa, Agenda
 from .permissions import CriarTarefaPermissions
-from .filters import TarefaFilter
+from .filters import TarefaFilter, AgendaFilter
 from accounts.models import Funcionario
 from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -32,3 +32,5 @@ class TarefaViewSets(viewsets.ModelViewSet):
 class AgendaViewSets(viewsets.ModelViewSet):
     queryset = Agenda.objects.all()
     serializer_class = AgendaSerializers
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = AgendaFilter

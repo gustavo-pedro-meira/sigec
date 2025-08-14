@@ -1,5 +1,5 @@
 import django_filters
-from tasks.models import Tarefa
+from tasks.models import Tarefa, Agenda
 
 class TarefaFilter(django_filters.FilterSet):
     status_tarefa = django_filters.ChoiceFilter(choices=Tarefa.StatusTarefa.choices)
@@ -15,3 +15,12 @@ class TarefaFilter(django_filters.FilterSet):
             'id_responsavel',
         }
     
+class AgendaFilter(django_filters.FilterSet):
+    status_agenda = django_filters.ChoiceFilter(choices=Agenda.StatusAgenda.choices)
+    class Meta:
+        model = Agenda
+        fields = {
+            'status_agenda',
+            'id_criador',
+            'data_agenda'
+        }
