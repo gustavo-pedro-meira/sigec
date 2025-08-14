@@ -8,7 +8,7 @@ class Funcionario(User):
     class CargoFuncionario(models.TextChoices):
         FUNCIONARIO = 'F', 'Funcionário'
         SECRETARIO = 'S', 'Secretario'
-        GESTOR = 'G', 'Gestor'
+        # GESTOR = 'G', 'Gestor'
     
     nome_completo = models.CharField(max_length=100)
     # data_nascimento = models.DateField(default='2000-02-02')

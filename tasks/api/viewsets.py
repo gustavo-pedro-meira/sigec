@@ -21,11 +21,11 @@ class TarefaViewSets(viewsets.ModelViewSet):
         if user.funcionario.cargo in ['G', 'S']:
             return Tarefa.objects.all()
         
-        if user.funcionario.cargo == 'F':
+        # if user.funcionario.cargo == 'F':
 
-            if not user.funcionario.cargo_trabalho:
-                return Tarefa.objects.none()
-            return Tarefa.objects.filter(cargo_destino=user.funcionario.cargo_trabalho)
+        #     if not user.funcionario.cargo_trabalho:
+        #         return Tarefa.objects.none()
+        #     return Tarefa.objects.filter(cargo_destino=user.funcionario.cargo_trabalho)
 
         return Tarefa.objects.none()
 
