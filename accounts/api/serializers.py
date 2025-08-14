@@ -16,7 +16,8 @@ class FuncionarioSerializers(serializers.ModelSerializer):
     class Meta:
         model = Funcionario
         fields = [
-            'id', 'cargo', 'nome_completo', 'username', 'password',
+            'id', 'cargo', 'nome_completo',
+            'username', 'password', 'data_expiracao',
             
             # Campo de Leitura
             'secretaria_trabalho',

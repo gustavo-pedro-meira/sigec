@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from registry.models import Secretaria, Cargo
-# from tasks.models import Tarefa
-
+from django.utils import timezone
 # Create your models here.
 class Funcionario(User):  
     class CargoFuncionario(models.TextChoices):
@@ -15,6 +14,7 @@ class Funcionario(User):
     # genero = models.CharField(max_length=20)
     cargo = models.CharField(max_length=20, choices=CargoFuncionario.choices, default=CargoFuncionario.FUNCIONARIO)
     secretaria_trabalho = models.ForeignKey(Secretaria, on_delete=models.SET_NULL, related_name='secretarias', null=True, blank=True)
+    data_expiracao = models.DateField(default=timezone.now)
     # cargo_trabalho = models.ForeignKey(Cargo, on_delete=models.SET_NULL, related_name='cargos', null=True, blank=True)
     # tarefas = models.ForeignKey('tasks.Tarefa', on_delete=models.SET_NULL, related_name='tarefas', blank=True, null=True)
     
