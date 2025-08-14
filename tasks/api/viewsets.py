@@ -1,6 +1,6 @@
 from rest_framework import viewsets, serializers
-from .serializers import TarefaSerializer
-from tasks.models import Tarefa
+from .serializers import TarefaSerializer, AgendaSerializers
+from tasks.models import Tarefa, Agenda
 from .permissions import CriarTarefaPermissions
 from .filters import TarefaFilter
 from accounts.models import Funcionario
@@ -29,5 +29,6 @@ class TarefaViewSets(viewsets.ModelViewSet):
 
         return Tarefa.objects.none()
 
-    # def perform_create(self, serializer):
-    #     serializer.save(criador=self.request.user)
+class AgendaViewSets(viewsets.ModelViewSet):
+    queryset = Agenda.objects.all()
+    serializer_class = AgendaSerializers

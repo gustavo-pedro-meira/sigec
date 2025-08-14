@@ -20,11 +20,12 @@ from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import routers, permissions
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from django.conf.urls.static import static
 
 # Importação das ViewSets das APP
 from accounts.api.viewsets import FuncionarioViewSets
 from registry.api.viewsets import SecretariaViewSets, CargoViewSets
-from tasks.api.viewsets import TarefaViewSets
+from tasks.api.viewsets import TarefaViewSets, AgendaViewSets
 
 # Criação das Rotas
 router = routers.DefaultRouter()
@@ -32,6 +33,7 @@ router.register('funcionarios', FuncionarioViewSets)
 router.register('secretarias', SecretariaViewSets)
 router.register('cargos', CargoViewSets)
 router.register('tarefas', TarefaViewSets)
+router.register('agendas', AgendaViewSets)
 
 
 urlpatterns = [
@@ -48,4 +50,4 @@ urlpatterns = [
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
