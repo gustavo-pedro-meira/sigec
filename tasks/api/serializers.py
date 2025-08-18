@@ -37,15 +37,16 @@ class TarefaSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('O prazo da tarefa não pode ser uma data passada.')
         return data
     
-    def HorarioAgendaMaiorQueAgoraValidation(self, data):
-        if data['hora_tarefa'] <= datetime.datetime.now().time():
-            raise serializers.ValidationError('O horário da agenda não pode ser menor ou igual ao horário atual.')
-        return data
+    # def HorarioAgendaMaiorQueAgoraValidation(self, data):
+    #     if data['hora_tarefa'] <= datetime.datetime.now().time():
+    #         raise serializers.ValidationError('O horário da agenda não pode ser menor ou igual ao horário atual.')
+    #     return data
     
     def validate(self, data):
         self.PrazoTarefaDataMaiorQueHojeValidation(data)
-        self.HorarioAgendaMaiorQueAgoraValidation(data)
+        # self.HorarioAgendaMaiorQueAgoraValidation(data)
         return data
+    
     
 class AgendaSerializers(serializers.ModelSerializer):
     # Campo de Leitura
@@ -73,12 +74,12 @@ class AgendaSerializers(serializers.ModelSerializer):
             raise serializers.ValidationError('O prazo da tarefa não pode ser uma data passada.')
         return data
     
-    def HorarioAgendaMaiorQueAgoraValidation(self, data):
-        if data['hora_agenda'] <= datetime.datetime.now().time():
-            raise serializers.ValidationError('O horário da agenda não pode ser menor ou igual ao horário atual.')
-        return data
+    # def HorarioAgendaMaiorQueAgoraValidation(self, data):
+    #     if data['hora_agenda'] <= datetime.datetime.now().time():
+    #         raise serializers.ValidationError('O horário da agenda não pode ser menor ou igual ao horário atual.')
+    #     return data
     
     def validate(self, data):
         self.DataAgendaMaiorQueHojeValidation(data)
-        self.HorarioAgendaMaiorQueAgoraValidation(data)
+        # self.HorarioAgendaMaiorQueAgoraValidation(data)
         return data
