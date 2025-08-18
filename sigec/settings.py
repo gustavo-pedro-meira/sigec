@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://sigec-9ven.onrender.com"]
+ALLOWED_HOSTS = ["sigec-9ven.onrender.com"]
 
 
 # Application definition
