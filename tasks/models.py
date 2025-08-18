@@ -46,7 +46,7 @@ class Tarefa(BaseModel):
         URGENTE = 'U', 'Urgente'
     
     missao_tarefa = models.CharField(max_length=150)
-    descricao_tarefa = models.TextField()
+    descricao_tarefa = models.TextField(blank=True, null=True)
     prazo_tarefa = models.DateField(default=timezone.now)
     hora_tarefa = models.TimeField(default=timezone.now, blank=True, null=True)
     status_tarefa = models.CharField(max_length=20, choices=StatusTarefa.choices, default=StatusTarefa.A_FAZER)
@@ -63,13 +63,14 @@ class Tarefa(BaseModel):
 class Agenda(BaseModel):
     class StatusAgenda(models.TextChoices):
         REALIZADA = 'R', 'Realizada',
-        A_FAZER = 'AF', 'A Fazer'
+        AGENDADO = 'AF', 'A Fazer'
         
     motivo_agenda = models.CharField(max_length=200)
+    descricao_agenda = models.TextField(blank=True, null=True)
     local_agenda = models.CharField(max_length=150, blank=True, null=True)
     data_agenda = models.DateField(default=timezone.now)
     hora_agenda = models.TimeField(default=timezone.now, blank=True, null=True)
-    status_agenda = models.CharField(max_length=20, choices=StatusAgenda.choices, default=StatusAgenda.A_FAZER, blank=True, null=True)
+    status_agenda = models.CharField(max_length=20, choices=StatusAgenda.choices, default=StatusAgenda.AGENDADO, blank=True, null=True)
     id_criador = models.ForeignKey(Funcionario, on_delete=models.CASCADE, related_name='agendas_criador')
     
     def __str__(self):
