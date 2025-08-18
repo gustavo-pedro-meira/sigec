@@ -15,10 +15,7 @@ class DataFuncionarioExpiraPermissions(permissions.BasePermission):
     def has_permission(self, request, view):
         if not request.user or not request.user.is_authenticated:
             return False
-        
         funcionario = Funcionario.objects.filter(id=request.user.id).first()
-        
         if funcionario and funcionario.data_expiracao and funcionario.data_expiracao < timezone.now().date():
             return False
-        
         return True

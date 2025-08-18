@@ -5,14 +5,14 @@ from django.utils import timezone
 # Create your models here.
 class Funcionario(User):  
     class CargoFuncionario(models.TextChoices):
-        FUNCIONARIO = 'F', 'Funcionário'
+        # FUNCIONARIO = 'F', 'Funcionário'
         SECRETARIO = 'S', 'Secretario'
-        # GESTOR = 'G', 'Gestor'
+        GESTOR = 'G', 'Gestor'
     
     nome_completo = models.CharField(max_length=100)
     # data_nascimento = models.DateField(default='2000-02-02')
     # genero = models.CharField(max_length=20)
-    cargo = models.CharField(max_length=20, choices=CargoFuncionario.choices, default=CargoFuncionario.FUNCIONARIO)
+    cargo = models.CharField(max_length=20, choices=CargoFuncionario.choices, default=CargoFuncionario.SECRETARIO)
     secretaria_trabalho = models.ForeignKey(Secretaria, on_delete=models.SET_NULL, related_name='secretarias', null=True, blank=True)
     data_expiracao = models.DateField(default=timezone.now)
     # cargo_trabalho = models.ForeignKey(Cargo, on_delete=models.SET_NULL, related_name='cargos', null=True, blank=True)
