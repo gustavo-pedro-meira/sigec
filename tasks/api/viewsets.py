@@ -18,7 +18,7 @@ class TarefaViewSets(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
 
-        if user.funcionario.cargo in ['G', 'S']:
+        if user.funcionario.cargo in ['P', 'S']:
             return Tarefa.objects.all()
         
         # if user.funcionario.cargo == 'F':
