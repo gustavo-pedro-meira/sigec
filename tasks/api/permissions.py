@@ -9,7 +9,7 @@ class CriarTarefaPermissions(permissions.BasePermission):
         if not request.user or not request.user.is_authenticated:
             return False
         
-        return request.user.funcionario.cargo in ['G', 'S']
+        return request.user.funcionario.cargo in ['P', 'S', 'D', 'T', 'C']
     
     # def has_object_permission(self, request, view, obj):
     #     if request.user.funcionario.cargo == 'G':
