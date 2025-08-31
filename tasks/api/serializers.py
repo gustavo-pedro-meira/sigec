@@ -47,20 +47,6 @@ class TarefaSerializer(serializers.ModelSerializer):
         # self.HorarioAgendaMaiorQueAgoraValidation(data)
         return data
     
-    def update(self, instance, validated_data):
-        user = self.context['request'].user
-        funcionario = user.funcionario
-    
-        if funcionario.cargo != 'G':
-            return super().update(instance, validated_data)
-        
-        for field in validated_data:
-            if field != 'status_tarefa':
-                raise serializers.ValidationError({
-                    field: "Você só tem permissão de alterar o status da tarefa."
-                })
-        
-        return super().update(instance, validated_data)
     
     
 class AgendaSerializers(serializers.ModelSerializer):

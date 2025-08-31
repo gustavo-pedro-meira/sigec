@@ -7,7 +7,7 @@ class Funcionario(User):
     class CargoFuncionario(models.TextChoices):
         # FUNCIONARIO = 'F', 'Funcionário'
         SECRETARIO = 'S', 'Secretario'
-        GESTOR = 'G', 'Gestor'
+        PREFEITO = 'P', 'Prefeito'
         DIRETOR = 'D', 'Diretor'
         TECNICO = 'T', 'Tecnico'
         COORDENADOR = 'C', 'Coordenador'
