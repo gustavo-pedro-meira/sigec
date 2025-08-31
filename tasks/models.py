@@ -62,8 +62,12 @@ class Tarefa(BaseModel):
     
 class Agenda(BaseModel):
     class StatusAgenda(models.TextChoices):
-        REALIZADA = 'R', 'Realizada',
-        AGENDADO = 'A', 'A Fazer'
+        AGENDADO = 'A', 'Agendado'
+        ADIADO = 'AD', 'Adiado'
+        REAGENDADO = 'RA', 'Reagendado'
+        ENCERRADO = 'E', 'Encerrado'
+        CANCELADO = 'C', 'Cancelado'
+        REALIZADO = 'R', 'Realizado'
         
     motivo_agenda = models.CharField(max_length=200)
     descricao_agenda = models.TextField(blank=True, null=True)
