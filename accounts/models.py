@@ -8,6 +8,9 @@ class Funcionario(User):
         # FUNCIONARIO = 'F', 'Funcionário'
         SECRETARIO = 'S', 'Secretario'
         GESTOR = 'G', 'Gestor'
+        DIRETOR = 'D', 'Diretor'
+        TECNICO = 'T', 'Tecnico'
+        COORDENADOR = 'C', 'Coordenador'
     
     nome_completo = models.CharField(max_length=100)
     # data_nascimento = models.DateField(default='2000-02-02')
