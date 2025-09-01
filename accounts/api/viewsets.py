@@ -12,3 +12,5 @@ class FuncionarioViewSets(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_class = FuncionarioFilter
+    
+    
