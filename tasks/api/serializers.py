@@ -22,7 +22,7 @@ class TarefaSerializer(serializers.ModelSerializer):
         model = Tarefa
         fields = [
             'id', 'missao_tarefa', 'descricao_tarefa', 'prazo_tarefa', 
-            'status_tarefa', 'anexo_tarefa', 'prioridade_tarefa', 'hora_tarefa',
+            'status_tarefa', 'anexo_tarefa', 'prioridade_tarefa', 'hora_tarefa', 'pontuacao_tarefa',
             
             # Nomes dos campos de leitura 
             'id_secretaria',  'id_criador', 'id_responsavel',

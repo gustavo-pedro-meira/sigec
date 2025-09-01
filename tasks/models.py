@@ -36,7 +36,7 @@ class Tarefa(BaseModel):
     class StatusTarefa(models.TextChoices):
         A_FAZER = 'AF', 'A Fazer'
         EM_ANDAMENTO = 'A', 'Andamento'
-        CONLUIDA = 'C', 'Concluída'
+        CONCLUIDA = 'C', 'Concluída'
         EXPIRADA = 'E', 'Expirada'
         
     class PrioridadeTarefa(models.TextChoices):
@@ -52,6 +52,7 @@ class Tarefa(BaseModel):
     status_tarefa = models.CharField(max_length=20, choices=StatusTarefa.choices, default=StatusTarefa.A_FAZER)
     anexo_tarefa = models.FileField(upload_to='documentos/', blank=True, null=True)
     prioridade_tarefa = models.CharField(max_length=20, choices=PrioridadeTarefa.choices, default=PrioridadeTarefa.BAIXA)
+    pontuacao_tarefa = models.IntegerField(default=1, blank=True, null=True)
     id_secretaria = models.ForeignKey(Secretaria, on_delete=models.CASCADE, related_name='tarefas')
     tarefa_cargo = models.ForeignKey(Cargo, on_delete=models.SET_NULL, related_name='taredas_cargo', blank=True, null=True)
     id_criador = models.ForeignKey(Funcionario, on_delete=models.SET_NULL, related_name='tarefas_criado', blank=True, null=True)
