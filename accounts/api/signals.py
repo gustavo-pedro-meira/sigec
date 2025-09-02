@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from accounts.models import Funcionario
 from tasks.models import Tarefa
@@ -21,7 +21,6 @@ def atualizar_data_expiracao_funcionarios(sender, instance, created, update_fiel
                 
 @receiver(post_save, sender=Tarefa)
 def atualizar_pontuacao_responsavel(sender, instance, created, update_fields, **kwards):
-    print("--- SIGNAL ATUALIZAR PONTUAÇÃO ACIONADO ---")
     if created:
         return
     if instance.status_tarefa == 'C':
@@ -41,3 +40,12 @@ def atualizar_pontuacao_responsavel(sender, instance, created, update_fields, **
             if responsavel.pontuacao_tarefas < 0:
                 responsavel.pontuacao_tarefas = 0
             responsavel.save(update_fields=['pontuacao_tarefas'])
+            
+@receiver(pre_delete, sender=Tarefa)
+def remover_pontuacao_responsavel(sender, instance, **kwargs):
+    if instance.id_responsavel:
+        responsavel = instance.id_responsavel
+        responsavel.pontuacao_tarefas = (responsavel.pontuacao_tarefas or 0) - instance.pontuacao_tarefa
+        if responsavel.pontuacao_tarefas < 0:
+            responsavel.pontuacao_tarefas = 0
+        responsavel.save(update_fields=['pontuacao_tarefas'])
